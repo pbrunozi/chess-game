@@ -7,7 +7,7 @@ import chess.pieces.King;
 import chess.pieces.Rook;
 
 public class ChessMatch {
-	
+
 	private int turn;
 	private Color currentPlayer;
 	private Board board;
@@ -20,13 +20,13 @@ public class ChessMatch {
 	}
 	
 	public int getTurn() {
-		return turn;		
+		return turn;
 	}
 	
 	public Color getCurrentPlayer() {
 		return currentPlayer;
 	}
-		
+	
 	public ChessPiece[][] getPieces() {
 		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
 		for (int i=0; i<board.getRows(); i++) {
@@ -47,11 +47,12 @@ public class ChessMatch {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
 		validateSourcePosition(source);
-		validateTargetPosition(source,target);
+		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
+		nextTurn();
 		return (ChessPiece)capturedPiece;
 	}
-		
+	
 	private Piece makeMove(Position source, Position target) {
 		Piece p = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
